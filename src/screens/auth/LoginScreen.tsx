@@ -10,7 +10,7 @@ import { Facebook, Google } from '../../assets/svgs'
 import { LoadingModal } from '../../modal'
 
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: any) => {
 
   // Lấy dữ liệu
   const [email, setEmail] = useState('');
@@ -57,7 +57,8 @@ const LoginScreen = () => {
           </RowComponent>
           <ButtonComponent 
             text='Quên mật khẩu?'
-            type='link'/>
+            type='link'
+            onPress={() => {navigation.navigate('ForgotPassWord')}}/>
         </RowComponent>
       </SectionComponent>
       <SectionComponent>
@@ -101,7 +102,7 @@ const LoginScreen = () => {
           <ButtonComponent
             type='link'
             text='Đăng ký'
-            />
+            onPress={() => {navigation.navigate('SignUpScreen')}}/>
         </RowComponent>
       </SectionComponent>
       <LoadingModal visible={isLoading}/>
