@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View } from 'react-native';
-import { ScrollView } from 'react-native-virtualized-view';
+import { Keyboard, KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import COLORS from '../assets/colors/Colors';
 
 interface Props {

@@ -7,6 +7,7 @@ import COLORS from '../../assets/colors/Colors';
 import { FONTFAMILY } from '../../../assets/fonts';
 import { Lock, Sms, User } from 'iconsax-react-native';
 import { LoadingModal } from '../../modal';
+import authenticationAPI from '../../apis/authAPI';
 
 const initValues = {
     username: '',
@@ -83,6 +84,29 @@ const SignUpScreen = ({ navigation }: any) => {
 
         setErrorMessage(data);
     };
+
+    const handleRegister = async () => {
+        const api = `/verification`;
+        setIsLoading(true); 
+        try {
+          const res = await authenticationAPI.HandleAuthentication(
+            api,
+            { email: values.email },
+            'post',
+          );
+    
+          setIsLoading(false);
+    
+          navigation.navigate('Verification', {
+            code: res.data.code,
+            ...values,
+          });
+        } catch (error) {
+          console.log(error);
+          setIsLoading(false);
+        }
+    };
+
     return (
         <>
             <KeyboardAvoidingViewWrapper>
@@ -143,6 +167,7 @@ const SignUpScreen = ({ navigation }: any) => {
                     <ButtonComponent
                         text='ĐĂNG KÝ'
                         type='orange'
+                        onPress={handleRegister}
                         disable={isDisable} />
                 </SectionComponent>
                 <SectionComponent>

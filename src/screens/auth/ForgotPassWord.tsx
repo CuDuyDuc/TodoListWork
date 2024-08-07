@@ -1,13 +1,14 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import React, { useState } from 'react'
-import { Validate } from '../../utils/validate';
-import { globalStyle } from '../../styles/globalStyle';
-import { ButtonComponent, InputComponent, SectionComponent, TextComponent } from '../../component';
 import { ArrowLeft, Sms } from 'iconsax-react-native';
-import COLORS from '../../assets/colors/Colors';
+import React, { useState } from 'react';
+import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { FONTFAMILY } from '../../../assets/fonts';
-import { LoadingModal } from '../../modal';
+import authenticationAPI from '../../apis/authAPI';
+import COLORS from '../../assets/colors/Colors';
 import IMAGES from '../../assets/images';
+import { ButtonComponent, InputComponent, SectionComponent, TextComponent } from '../../component';
+import { LoadingModal } from '../../modal';
+import { globalStyle } from '../../styles/globalStyle';
+import { Validate } from '../../utils/validate';
 
 const ForgotPassWord = ({ navigation }: any) => {
 
@@ -18,6 +19,20 @@ const ForgotPassWord = ({ navigation }: any) => {
     const handleCheckEmail = () => {
         const isValidEmail = Validate.email(email);
         setIsDisable(!isValidEmail);
+    }
+
+    const handleForgotPassword = async () => {
+        const api = `/forgotPassword`;
+        setIsLoading(true);
+        try {
+            const res: any = await authenticationAPI.HandleAuthentication(api, {email}, 'post');
+            console.log(res);
+            Alert.alert('Gửi Mật Khẩu Cho Bạn: ','Chúng tôi đã gửi đến email của bạn bao gồm mật khẩu mới!');
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            console.log(`Không thể tạo mật khẩu mới api quên mật khẩu, ${error}`);
+        }
     }
 
     return (
@@ -45,6 +60,7 @@ const ForgotPassWord = ({ navigation }: any) => {
                 type='orange' 
                 styles={{width: '80%'}}
                 disable={isDisable}
+                onPress={handleForgotPassword}
                 /> 
         </SectionComponent>
         <LoadingModal visible= {isLoading}/>

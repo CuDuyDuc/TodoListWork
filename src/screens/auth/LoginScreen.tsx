@@ -1,5 +1,5 @@
-import { View, Text, Image, Switch } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Image, Switch, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { ButtonComponent, InputComponent, KeyboardAvoidingViewWrapper, RowComponent, SectionComponent, TextComponent } from '../../component'
 import IMAGES from '../../assets/images'
 import COLORS from '../../assets/colors/Colors'
@@ -8,7 +8,18 @@ import { Lock, Sms } from 'iconsax-react-native'
 import { globalStyle } from '../../styles/globalStyle'
 import { Facebook, Google } from '../../assets/svgs'
 import { LoadingModal } from '../../modal'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { Settings, LoginManager, Profile } from 'react-native-fbsdk-next';
+import { Validate } from '../../utils/validate'
+import authenticationAPI from '../../apis/authAPI'
+import { addAuth } from '../../redux/reducers/authReducer'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useDispatch } from 'react-redux'
+GoogleSignin.configure({
+  webClientId: '860030721968-ocbku2gcgc9gna2u05ihquh69ick2qj1.apps.googleusercontent.com',
+});
 
+Settings.setAppID('699075508878435');
 
 const LoginScreen = ({navigation}: any) => {
 
@@ -18,6 +29,105 @@ const LoginScreen = ({navigation}: any) => {
   const [isRemember, setIsRemember] = useState(true);
   const [isDisable, setIsDisable] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const emailValidation = Validate.email(email);
+
+    if (!email || !password || !emailValidation) {
+        setIsDisable(true);
+    } else {
+        setIsDisable(false);
+    }
+}, [email, password]);
+
+const handleLogin = async () => {
+
+    const emailValidation = Validate.email(email);
+    setIsLoading(true);
+    if (emailValidation) {
+        setIsLoading(true);
+        try {
+            const res = await authenticationAPI.HandleAuthentication('/login', { email, password }, 'post');
+            dispatch(addAuth(res.data));
+            await AsyncStorage.setItem(
+                'auth',
+                isRemember ? JSON.stringify(res.data) : email,
+            );
+            await AsyncStorage.setItem('auth', isRemember ? JSON.stringify(res.data) : email);
+        } catch (error) {
+            console.log(error)
+        }
+
+    } else {
+        Alert.alert('Email is not correct!!!');
+    }
+}
+
+const handleLoginWithGoogle = async () => {
+    await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true, // hiển thị dialog chọn gg đăng nhập
+    });
+
+    const api = '/signInWithGoogle';
+    setIsLoading(true);
+    try {
+        await GoogleSignin.hasPlayServices();
+
+        const userInfo = await GoogleSignin.signIn(); // gọi đến đăng nhập
+        const user = userInfo.user
+        const res: any = await authenticationAPI.HandleAuthentication(api, user, 'post')
+        // console.log(res);
+        dispatch(addAuth(res.data));
+        await AsyncStorage.setItem(
+            'auth',
+            JSON.stringify(res.data),
+        );
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const handleLoginWithFacebook = async () => {
+    const api = '/signInWithGoogle';
+    try {
+        const result = await LoginManager.logInWithPermissions([
+            'public_profile',
+        ]);
+
+        if (result.isCancelled) {
+            console.log('Login cancel');
+        } else {
+            const profile = await Profile.getCurrentProfile();
+
+            if (profile) {
+                setIsLoading(true);
+                const data = {
+                    name: profile.name,
+                    givenName: profile.firstName,
+                    familyName: profile.lastName,
+                    email: profile.userID, // vì khi lấy thông tin của ng dùng trên fb thì không có email nên lấy userID làm thế
+                    // mục đích để khi người dùng đăng nhập lại thì mình biết nó đã tồn tại hay chưa và nó biết để cập nhật hoặc tạo mới.
+                    photo: profile.imageURL,
+                };
+
+                const res: any = await authenticationAPI.HandleAuthentication(
+                    api,
+                    data,
+                    'post',
+                );
+
+                dispatch(addAuth(res.data));
+
+                await AsyncStorage.setItem('auth', JSON.stringify(res.data));
+
+                setIsLoading(false);
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
 
   return (
     <KeyboardAvoidingViewWrapper>
@@ -65,6 +175,7 @@ const LoginScreen = ({navigation}: any) => {
         <ButtonComponent
           text='Đăng Nhập'
           type='orange'
+          onPress={handleLogin}
           disable={isDisable}/>
       </SectionComponent>
       <SectionComponent>
@@ -82,6 +193,7 @@ const LoginScreen = ({navigation}: any) => {
             text='Google'
             iconFlex='left'
             type='orange'
+            onPress={handleLoginWithGoogle}
             styles= {globalStyle.shadow}
             textColor={COLORS.HEX_LIGHT_GREY}
             icon= {<Google/>}/>
@@ -89,6 +201,7 @@ const LoginScreen = ({navigation}: any) => {
             text='Facebook'
             iconFlex='left'
             type='orange'
+            onPress={handleLoginWithFacebook}
             styles= {globalStyle.shadow}
             textColor={COLORS.HEX_LIGHT_GREY}
             icon= {<Facebook/>}/> 
