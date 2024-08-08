@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { KeyboardType, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardType, StyleProp, StyleSheet, TextInput, TouchableOpacity, View, ViewStyle } from 'react-native';
 import COLORS from '../assets/colors/Colors';
 import { globalStyle } from '../styles/globalStyle';
 import AntDesign from 'react-native-vector-icons/AntDesign';

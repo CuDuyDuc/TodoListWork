@@ -8,6 +8,7 @@ import AddNewWork from './AddNewWork';
 import ProFileScreen from './profile/ProfileScreen';
 import CalendarScreen from './calendar/CalendarScreen';
 import FocusScreen from './focus/FocusScreen';
+import DetailWorkScreen from './home/detail/DetailWorkScreen';
 export {
     SplashScreen,
     LoginScreen,
@@ -19,4 +20,5 @@ export {
     ProFileScreen,
     CalendarScreen,
     FocusScreen,
+    DetailWorkScreen
     }
