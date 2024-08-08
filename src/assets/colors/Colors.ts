@@ -7,7 +7,9 @@ const COLORS = {
     RED : 'red',
     HEX_LIGHT: '#141921',
     LIGHT: '#d9e3f0',
-    ORANGE: '#FF9228'
+    ORANGE: '#FF9228',
+    LIGHT_CYAN: '#e0f7fa',
+    ORANGE_PEEL: '#ff6f00'
 }
 
 export default COLORS;
