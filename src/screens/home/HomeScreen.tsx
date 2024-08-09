@@ -2,12 +2,13 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { FONTFAMILY } from '../../../assets/fonts';
 import workAPI from '../../apis/workAPI';
 import COLORS from '../../assets/colors/Colors';
-import { ContainerComponent, RowComponent, SectionComponent, TextComponent } from '../../component';
+import IMAGES from '../../assets/images';
+import { RowComponent, SectionComponent, TextComponent } from '../../component';
 import CardListWorkComponent from '../../component/CardListWorkComponent';
 import { authSelector } from '../../redux/reducers/authReducer';
-import data from './../../../node_modules/@mongodb-js/saslprep/dist/code-points-data-browser.d';
 
 const HomeScreen = ({navigation, route} : any) => {
   const user = useSelector(authSelector);
@@ -31,12 +32,16 @@ const HomeScreen = ({navigation, route} : any) => {
 
   return (
     <View style={{flex:1}}>
-      <View >
+      <StatusBar barStyle={'light-content'}/>
+      <View style={{
+              backgroundColor: COLORS.ORANGE,
+              borderBottomEndRadius: 16,
+              borderBottomStartRadius: 16}}>
         <SectionComponent styles={{ marginTop: 40 }}>
           <RowComponent justify='space-between'>
             <RowComponent>
-              <TextComponent text="Hi, " size={18} color={COLORS.HEX_LIGHT_GRAY} />
-              <TextComponent text={user.name ? user.name : user.email} title size={18} color={COLORS.HEX_LIGHT_GRAY} />
+              <TextComponent text="Hi, " size={18} color={COLORS.WHITE} />
+              <TextComponent text={user.name ? user.name : user.email} title size={18} color={COLORS.WHITE} />
             </RowComponent>
             {user.photo ? (
               <Image source={{ uri: user.photo }} style={[styles.avatar]} />
@@ -60,12 +65,18 @@ const HomeScreen = ({navigation, route} : any) => {
           </RowComponent>
         </SectionComponent>
       </View>
-      <SectionComponent>
+      <SectionComponent styles={{marginTop: 8}}>
+        <RowComponent styles = {{ alignItems: 'center'}}>
+          <Image source={IMAGES.DanhMuc} style = {{marginRight: 5}}/>
+          <TextComponent text='Danh mục' size={16} color={COLORS.BLACK} styles= {{fontFamily: FONTFAMILY.poppins_medium}}/>
+        </RowComponent>
+      </SectionComponent>
+      <SectionComponent styles={{marginTop: 5}}>
         <FlatList
           data={work}
           keyExtractor={(item) => item._id.toString()}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{paddingBottom:100}}
+          // contentContainerStyle={{paddingBottom:50}}
           renderItem={({ item }) => (
             <CardListWorkComponent
               onPress={()=>WorkDetailHandle(item)}

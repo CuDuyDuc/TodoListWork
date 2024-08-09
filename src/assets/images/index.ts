@@ -3,7 +3,8 @@ const IMAGES = {
     Login: require('./login.png'),
     ForgotPass: require('./forgotpassword.png'),
     SignUp: require('./signup.png'),
-    otp: require('./otp.png')
+    otp: require('./otp.png'),
+    DanhMuc: require('./danhmuc.png')
 }
 
 export default IMAGES

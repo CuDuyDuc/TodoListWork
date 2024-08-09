@@ -57,7 +57,7 @@ const CardListWorkComponent = (props: Props) => {
                 <RowComponent justify="space-between" styles={{ alignItems: 'center' }}>
                     <RowComponent justify="flex-start" styles={{ alignItems: 'center' }}>
                         <Clock size={22} color={COLORS.ORANGE} variant='Bold' />
-                        <TextComponent text={time} color="#000" size={14} />
+                        <TextComponent text={time} color="#000" size={14} styles= {{}}/>
                     </RowComponent>
                     <TextComponent text={date} color="#000" size={14} styles={{ marginTop: 5 }} />
                 </RowComponent>
