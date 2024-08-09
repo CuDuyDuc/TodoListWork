@@ -20,9 +20,9 @@ const DetailWorkScreen = ({ navigation, route }: any) => {
 
     const deleteWorkHandle = async () => {
         try {
-            await workAPI.HandleWork(`/delete-work/${data._id}`, {}, 'delete');
+            await workAPI.HandleWork(`/delete-work/${data.id_work}`, {}, 'delete');
             closeModal();
-            navigation.navigate('HomeScreen');
+            navigation.navigate('Home');
         } catch (error) {
             console.log('Lỗi khi xóa công việc', error);
             closeModal();
