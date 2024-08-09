@@ -76,7 +76,7 @@ const HomeScreen = ({navigation, route} : any) => {
           data={work}
           keyExtractor={(item) => item._id.toString()}
           showsVerticalScrollIndicator={false}
-          // contentContainerStyle={{paddingBottom:50}}
+          contentContainerStyle={{paddingBottom:200}}
           renderItem={({ item }) => (
             <CardListWorkComponent
               onPress={()=>WorkDetailHandle(item)}
