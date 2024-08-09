@@ -81,7 +81,7 @@ const HomeScreen = ({navigation, route} : any) => {
             <CardListWorkComponent
               onPress={()=>WorkDetailHandle(item)}
               name={item.name}
-              time={moment(item.date_work).format("HH:MM")}
+              time={moment(item.date_work).format("HH:mm")}
               description={item.description}
               date={moment(item.date_work).format("DD/MM/YYYY")}
               isSuccess={item.success}

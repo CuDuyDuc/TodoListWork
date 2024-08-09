@@ -1,14 +1,13 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-import { authSelector } from '../redux/reducers/authReducer';
-import { ButtonComponent, ContainerComponent, InputComponent, RowComponent, SectionComponent } from '../component';
-import DatePicker from 'react-native-date-picker';
-import COLORS from '../assets/colors/Colors';
-import { FONTFAMILY } from '../../assets/fonts';
-import { globalStyle } from '../styles/globalStyle';
 import { Calendar, Flag, Send } from 'iconsax-react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import { useSelector } from 'react-redux';
 import workAPI from '../apis/workAPI';
+import COLORS from '../assets/colors/Colors';
+import { ContainerComponent, InputComponent, RowComponent, SectionComponent } from '../component';
+import { authSelector } from '../redux/reducers/authReducer';
+import { globalStyle } from '../styles/globalStyle';
 
 const AddNewWork = () => {
   const [date, setDate] = useState(new Date());
@@ -22,6 +21,7 @@ const AddNewWork = () => {
       await workAPI.HandleWork('/add-work', { id_user: user.id, name: isName, description: isdescription, date_work: date }, 'post')
       setIsName('')
       isSetDescription('')
+      setDate(new Date())
     } catch (error) {
       console.log("Add error", error);
     }
