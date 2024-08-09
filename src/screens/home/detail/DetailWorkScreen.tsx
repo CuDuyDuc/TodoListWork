@@ -13,6 +13,8 @@ import { ReactNativeModal } from 'react-native-modal/dist/modal';
 const DetailWorkScreen = ({ navigation, route }: any) => {
     const user = useSelector(authSelector);
     const { data } = route.params
+    console.log(data);
+    
     const [isRemember, setIsRemember] = useState(data.success);
     const [isModalVisible, setModalVisible] = useState(false);
     const openModal = () => setModalVisible(true);
@@ -20,7 +22,7 @@ const DetailWorkScreen = ({ navigation, route }: any) => {
 
     const deleteWorkHandle = async () => {
         try {
-            await workAPI.HandleWork(`/delete-work/${data.id_work}`, {}, 'delete');
+            await workAPI.HandleWork(`/delete-work/${data._id}`, {}, 'delete');
             closeModal();
             navigation.navigate('Home');
         } catch (error) {
