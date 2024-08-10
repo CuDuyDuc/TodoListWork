@@ -61,6 +61,7 @@ const AddNewWork = () => {
           modal
           open={open}
           date={date}
+          minimumDate={new Date()}
           onConfirm={date => {
             setOpen(false);
             setDate(date);
