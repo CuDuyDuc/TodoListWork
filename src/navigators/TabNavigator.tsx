@@ -35,7 +35,7 @@ const TabNavigator = () => {
                     case 'Calendar':
                         icon = <Flag size={size} color={color} variant="Bold" />;
                         break;
-                    case 'Focuse':
+                    case 'SuccessWork':
                         icon = <CopySuccess size={size} color={color} variant="Bold" />;
                         break;
                     case 'Profile':
