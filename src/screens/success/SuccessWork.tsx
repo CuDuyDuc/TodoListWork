@@ -11,19 +11,19 @@ const SuccessWork = ({navigation}: any) => {
 
   const user = useSelector(authSelector);
 
-  const [successWork, setSuccessWork] = useState<any>('')
+  const [successWork, setSuccessWork] = useState<any>([])
 
   useEffect(() => {
     const getWorkSuccessById = async () => {
       try {
-        const SetWorkSuccessById = workAPI.HandleWork(`/success-work/:id_user${user.id}`);
+        const SetWorkSuccessById = await workAPI.HandleWork(`/success-work/:id_user${user.id}`);
         setSuccessWork(SetWorkSuccessById)
       } catch (error) {
         console.log(error);
       }
     } 
     getWorkSuccessById()
-  }, [successWork]);
+  }, []);
 
   const WorkDetailHandle = (item : any) => {
     navigation.navigate('DetailWorkScreen', {data:item})
