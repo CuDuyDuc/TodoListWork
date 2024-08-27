@@ -35,7 +35,7 @@ const DetailWorkScreen = ({ navigation, route }: any) => {
     };
 
     const HandleDataWork = (item : any) => {
-        navigation.navigate('Focuse', {data: item})
+        navigation.navigate('UpdateWorkScreen', {data: item})
     }
 
     return (

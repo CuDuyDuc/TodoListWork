@@ -9,6 +9,7 @@ import ProFileScreen from './profile/ProfileScreen';
 import CalendarScreen from './calendar/CalendarScreen';
 import FocusScreen from './focus/FocusScreen';
 import DetailWorkScreen from './home/detail/DetailWorkScreen';
+import UpdateWorkScreen from './home/detail/update/UpdateWorkScreen';
 export {
     SplashScreen,
     LoginScreen,
@@ -20,5 +21,6 @@ export {
     ProFileScreen,
     CalendarScreen,
     FocusScreen,
-    DetailWorkScreen
+    DetailWorkScreen,
+    UpdateWorkScreen,
     }

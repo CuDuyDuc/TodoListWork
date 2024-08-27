@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AddSquare, Clock, Flag, Home2, Profile, Refresh } from 'iconsax-react-native';
+import { AddSquare, CopySuccess, Flag, Home2, Profile } from 'iconsax-react-native';
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 import COLORS from '../assets/colors/Colors';
@@ -36,7 +36,7 @@ const TabNavigator = () => {
                         icon = <Flag size={size} color={color} variant="Bold" />;
                         break;
                     case 'Focuse':
-                        icon = <Refresh size={size} color={color} variant="Bold" />;
+                        icon = <CopySuccess size={size} color={color} variant="Bold" />;
                         break;
                     case 'Profile':
                         icon = <Profile size={size} color={color} variant="Bold" />;
