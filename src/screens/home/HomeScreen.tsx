@@ -9,27 +9,25 @@ import IMAGES from '../../assets/images';
 import { RowComponent, SectionComponent, TextComponent } from '../../component';
 import CardListWorkComponent from '../../component/CardListWorkComponent';
 import { authSelector } from '../../redux/reducers/authReducer';
-import { useFocusEffect } from '@react-navigation/native';
 
 const HomeScreen = ({navigation, route} : any) => {
   const user = useSelector(authSelector);
   const dispatch = useDispatch();
   const [work, setWork] = useState<any>([])
-  useFocusEffect(
-    React.useCallback(() => {
-      const getWorkByUserId = async () => {
-        try {
-          const res = await workAPI.HandleWork(`/get-work-by-id?id_user=${user.id}`);
-          setWork(res);
-        } catch (error) {
-          console.log('Lỗi gọi API', error);
-        }
-      };
-      getWorkByUserId();
-    }, [])
-  );
-console.log(work);
-
+  useEffect(() => {
+    const getWorkByUserId = async () => {
+      try {
+        const res = await workAPI.HandleWork(`/get-work-by-id?id_user=${user.id}`)
+        setWork(res)
+      } catch (error) {
+        console.log('lỗi call api', error);
+      }
+    };
+    getWorkByUserId()
+  },[]);
+  console.log(work);
+  
+ 
   const WorkDetailHandle = (item : any) => {
     navigation.navigate('DetailWorkScreen', {data:item})
   }

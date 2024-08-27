@@ -26,7 +26,7 @@ const CardListWorkComponent = (props: Props) => {
     useEffect(() => {
         const updateSuccess = async () => {
             try {
-                await workAPI.HandleWork(`/update-success/${idWork}`, { success: isRemember }, 'put')
+                await workAPI.HandleWork(`/update-success/${idWork}`, { success: isRemember }, 'put')            
             } catch (error) {
                 console.log('Lỗi update success', error);
 

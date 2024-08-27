@@ -19,7 +19,7 @@ GoogleSignin.configure({
   webClientId: '860030721968-ocbku2gcgc9gna2u05ihquh69ick2qj1.apps.googleusercontent.com',
 });
 
-Settings.setAppID('699075508878435');
+Settings.setAppID('527574866473646');
 
 const LoginScreen = ({navigation}: any) => {
 
