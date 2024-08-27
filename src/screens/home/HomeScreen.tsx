@@ -31,10 +31,10 @@ const HomeScreen = ({navigation, route} : any) => {
   }
 
   return (
-    <View style={{flex:1}}>
+    <View style={{flex:1, backgroundColor: COLORS.BLACK}}>
       <StatusBar barStyle={'light-content'}/>
       <View style={{
-              backgroundColor: COLORS.ORANGE,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
               borderBottomEndRadius: 16,
               borderBottomStartRadius: 16}}>
         <SectionComponent styles={{ marginTop: 40 }}>
@@ -68,7 +68,7 @@ const HomeScreen = ({navigation, route} : any) => {
       <SectionComponent styles={{marginTop: 8}}>
         <RowComponent styles = {{ alignItems: 'center'}}>
           <Image source={IMAGES.DanhMuc} style = {{marginRight: 5}}/>
-          <TextComponent text='Danh mục' size={16} color={COLORS.BLACK} styles= {{fontFamily: FONTFAMILY.poppins_medium}}/>
+          <TextComponent text='Danh mục' size={16} styles= {{fontFamily: FONTFAMILY.poppins_medium}}/>
         </RowComponent>
       </SectionComponent>
       <SectionComponent styles={{marginTop: 5}}>

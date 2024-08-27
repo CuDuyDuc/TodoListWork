@@ -37,7 +37,7 @@ const ProFileScreen = ({ navigation }: any) => {
       <SectionComponent styles={{ marginTop: 40 }}>
         <RowComponent justify='space-between'>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <ArrowLeft2 size={24} color={COLORS.BLACK} />
+            <ArrowLeft2 size={24} color={COLORS.WHITE} />
           </TouchableOpacity>
           <TextComponent
             text="Profile"
@@ -70,7 +70,7 @@ const ProFileScreen = ({ navigation }: any) => {
         <TextComponent
           text={user.name ? user.name : user.email}
           title size={24}
-          color={COLORS.BLACK}
+          color={COLORS.WHITE}
           styles={{ fontFamily: FONTFAMILY.poppins_medium }} />
       </SectionComponent>
       <SectionComponent>

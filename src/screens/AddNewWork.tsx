@@ -1,15 +1,16 @@
-import { Calendar, Flag, Send } from 'iconsax-react-native';
+import { ArrowLeft2, Calendar, Flag, Send } from 'iconsax-react-native';
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { useSelector } from 'react-redux';
 import workAPI from '../apis/workAPI';
 import COLORS from '../assets/colors/Colors';
-import { ContainerComponent, InputComponent, RowComponent, SectionComponent } from '../component';
+import { ContainerComponent, InputComponent, RowComponent, SectionComponent, TextComponent } from '../component';
 import { authSelector } from '../redux/reducers/authReducer';
 import { globalStyle } from '../styles/globalStyle';
+import { FONTFAMILY } from '../../assets/fonts';
 
-const AddNewWork = () => {
+const AddNewWork = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [isName, setIsName] = useState('');
@@ -29,6 +30,19 @@ const AddNewWork = () => {
   return (
     <ContainerComponent>
       <SectionComponent styles={{ marginTop: 40 }}>
+        <RowComponent justify='space-between'>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <ArrowLeft2 size={24} color={COLORS.WHITE} />
+          </TouchableOpacity>
+          <TextComponent
+            text="Add to work"
+            color={COLORS.ORANGE}
+            size={25}
+            font={FONTFAMILY.poppins_medium} />
+          <View></View>
+        </RowComponent>
+      </SectionComponent>
+      <SectionComponent styles={{ marginTop: 80 }}>
         <InputComponent
           value={isName}
           onChange={val => setIsName(val)}

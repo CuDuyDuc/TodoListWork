@@ -1,15 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import COLORS from '../../assets/colors/Colors'
-import { FONTFAMILY } from '../../../assets/fonts'
-import { useDispatch } from 'react-redux'
-import authenticationAPI from '../../apis/authAPI'
-import { addAuth } from '../../redux/reducers/authReducer'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { globalStyle } from '../../styles/globalStyle'
+import { ArrowLeft2 } from 'iconsax-react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { FONTFAMILY } from '../../../assets/fonts'
+import authenticationAPI from '../../apis/authAPI'
+import COLORS from '../../assets/colors/Colors'
 import { ButtonComponent, RowComponent, SectionComponent, TextComponent } from '../../component'
-import { ArrowLeft } from 'iconsax-react-native'
 import { LoadingModal } from '../../modal'
+import { addAuth } from '../../redux/reducers/authReducer'
+import { globalStyle } from '../../styles/globalStyle'
 
 const Verification = ({ navigation, route }: any) => {
   const { code, email, password, username} = route.params;
@@ -114,9 +114,9 @@ const Verification = ({ navigation, route }: any) => {
 
   return (
       <View style={globalStyle.container}>
-          <SectionComponent styles = {{backgroundColor: COLORS.WHITE}}>
+          <SectionComponent styles = {{backgroundColor: COLORS.BLACK}}>
               <TouchableOpacity style={{ paddingTop: 50, paddingBottom: 10 }}>
-                  <ArrowLeft size={24} color={COLORS.BLACK}
+                  <ArrowLeft2 size={24} color={COLORS.WHITE}
                       onPress={() => navigation.goBack()} />
               </TouchableOpacity>
               <TextComponent 
@@ -126,8 +126,7 @@ const Verification = ({ navigation, route }: any) => {
                   color={COLORS.ORANGE}/>
               <TextComponent
                   text={`Chúng tôi đã gửi mã xác minh vào ${email.replace(/.{1,5}/, (m: any) => '*'.repeat(m.length))}: `}
-                  styles={{ paddingBottom: 30 }}
-                  color={COLORS.BLACK} />
+                  styles={{ paddingBottom: 30 }}/>
           </SectionComponent>
           <SectionComponent>
               <RowComponent justify='space-around'>
@@ -205,7 +204,7 @@ const Verification = ({ navigation, route }: any) => {
           <SectionComponent>
               {limit > 0 ? (
                   <RowComponent justify="center">
-                      <TextComponent text="Re-send code in  " flex={0} color={COLORS.BLACK}/>
+                      <TextComponent text="Re-send code in  " flex={0} color={COLORS.WHITE}/>
                       <TextComponent
                           text={`${(limit - (limit % 60)) / 60}:${limit - (limit - (limit % 60))
                               }`}
@@ -242,6 +241,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontFamily: FONTFAMILY.poppins_bold,
         textAlign: 'center',
-        color: COLORS.BLACK,
+        color: COLORS.WHITE,
+        paddingTop: 3
     },
 });

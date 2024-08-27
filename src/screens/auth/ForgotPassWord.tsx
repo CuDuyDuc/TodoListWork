@@ -40,14 +40,14 @@ const ForgotPassWord = ({ navigation }: any) => {
             <View style={globalStyle.container}>
                 <SectionComponent>
                     <TouchableOpacity style={{ paddingTop: 50, paddingBottom: 10 }}>
-                        <ArrowLeft size={24} color={COLORS.BLACK}
+                        <ArrowLeft size={24} color={COLORS.WHITE}
                             onPress={() => navigation.goBack()} />
                     </TouchableOpacity>
                     <SectionComponent>
                         <Image source={IMAGES.ForgotPass} style={{ width: '100%', height: 270, marginTop: 25 }} />
                     </SectionComponent>
-                    <TextComponent text='Resset Mật Khẩu' title font={FONTFAMILY.poppins_bold} color={COLORS.BLACK} />
-                    <TextComponent text='Để đặt lại mật khẩu, bạn cần có email có thể được xác thực.' styles={{ paddingBottom: 30 }} color={COLORS.BLACK} />
+                    <TextComponent text='Resset Mật Khẩu' title font={FONTFAMILY.poppins_bold}/>
+                    <TextComponent text='Để đặt lại mật khẩu, bạn cần có email có thể được xác thực.' styles={{ paddingBottom: 30 }}/>
                     <InputComponent
                         value={email}
                         onChange={val => setEmail(val)}

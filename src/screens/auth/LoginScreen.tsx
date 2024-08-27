@@ -135,7 +135,6 @@ const handleLoginWithFacebook = async () => {
           title
           text='Đăng Nhập'
           size={45}
-          color={COLORS.BLACK}
           font={FONTFAMILY.poppins_bold}
           styles= {{marginBottom: 20}}/>
         <InputComponent
@@ -159,7 +158,7 @@ const handleLoginWithFacebook = async () => {
               thumbColor={isRemember ? COLORS.WHITE : COLORS.ORANGE}
               value={isRemember}
               onChange={() => setIsRemember(!isRemember)}/>
-            <TextComponent text='Ghi nhớ tài khoản' color={COLORS.BLACK}/>
+            <TextComponent text='Ghi nhớ tài khoản' />
           </RowComponent>
           <ButtonComponent 
             text='Quên mật khẩu?'
@@ -206,8 +205,7 @@ const handleLoginWithFacebook = async () => {
       <SectionComponent>
         <RowComponent justify='center'>
           <TextComponent 
-            text='Bạn chưa có tài khoản? '
-            color={COLORS.BLACK}/>
+            text='Bạn chưa có tài khoản? '/>
           <ButtonComponent
             type='link'
             text='Đăng ký'

@@ -118,7 +118,6 @@ const SignUpScreen = ({ navigation }: any) => {
                         title
                         text='Đăng Ký'
                         size={45}
-                        color={COLORS.BLACK}
                         font={FONTFAMILY.poppins_bold}
                         styles={{ marginBottom: 20, }} />
                     <InputComponent
@@ -172,7 +171,7 @@ const SignUpScreen = ({ navigation }: any) => {
                 </SectionComponent>
                 <SectionComponent>
                     <RowComponent justify='center'>
-                        <TextComponent text="Bạn đã có tài khoản?  " color={COLORS.BLACK} />
+                        <TextComponent text="Bạn đã có tài khoản?  "/>
                         <ButtonComponent type='link' text='Đăng nhập' onPress={() => {
                             navigation.navigate('LoginScreen')
                         }} />
