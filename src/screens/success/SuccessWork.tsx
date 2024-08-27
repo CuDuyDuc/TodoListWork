@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const FocusScreen = () => {
+const SuccessWork = () => {
   return (
     <View>
-      <Text>FocusScreen</Text>
+      <Text>SuccessWork</Text>
     </View>
   )
 }
 
-export default FocusScreen
+export default SuccessWork

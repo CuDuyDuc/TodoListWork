@@ -7,9 +7,9 @@ import Verification from './auth/Verification';
 import AddNewWork from './AddNewWork';
 import ProFileScreen from './profile/ProfileScreen';
 import CalendarScreen from './calendar/CalendarScreen';
-import FocusScreen from './focus/FocusScreen';
 import DetailWorkScreen from './home/detail/DetailWorkScreen';
 import UpdateWorkScreen from './home/detail/update/UpdateWorkScreen';
+import SuccessWork from './success/SuccessWork';
 export {
     SplashScreen,
     LoginScreen,
@@ -20,7 +20,7 @@ export {
     AddNewWork,
     ProFileScreen,
     CalendarScreen,
-    FocusScreen,
+    SuccessWork,
     DetailWorkScreen,
     UpdateWorkScreen,
     }
