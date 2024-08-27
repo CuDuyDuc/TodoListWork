@@ -22,6 +22,7 @@ interface Props {
 const CardListWorkComponent = (props: Props) => {
     const { name, time, date, description, onPress, isSuccess, idWork } = props
     const [isRemember, setIsRemember] = useState(isSuccess);
+    
     useEffect(() => {
         const updateSuccess = async () => {
             try {
@@ -33,6 +34,7 @@ const CardListWorkComponent = (props: Props) => {
         }
         updateSuccess()
     }, [isRemember])
+    
     return (
         <TouchableOpacity onPress={onPress}>
             <LinearGradient

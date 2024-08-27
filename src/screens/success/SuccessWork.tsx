@@ -16,14 +16,15 @@ const SuccessWork = ({navigation}: any) => {
   useEffect(() => {
     const getWorkSuccessById = async () => {
       try {
-        const SetWorkSuccessById = await workAPI.HandleWork(`/success-work/:id_user${user.id}`);
-        setSuccessWork(SetWorkSuccessById)
+        const SetWorkSuccessById = await workAPI.HandleWork(`/success-work/${user.id}`);
+        setSuccessWork(SetWorkSuccessById.data)
+        
       } catch (error) {
         console.log(error);
       }
     } 
     getWorkSuccessById()
-  }, []);
+  }, [successWork]);
 
   const WorkDetailHandle = (item : any) => {
     navigation.navigate('DetailWorkScreen', {data:item})
