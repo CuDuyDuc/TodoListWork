@@ -70,4 +70,4 @@ const SuccessWork = ({ navigation }: any) => {
   )
 }
 
-      export default SuccessWork
+export default SuccessWork

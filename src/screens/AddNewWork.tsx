@@ -5,10 +5,11 @@ import DatePicker from 'react-native-date-picker';
 import { useSelector } from 'react-redux';
 import workAPI from '../apis/workAPI';
 import COLORS from '../assets/colors/Colors';
-import { ContainerComponent, InputComponent, RowComponent, SectionComponent, TextComponent } from '../component';
+import { CategoriesList, ContainerComponent, InputComponent, RowComponent, SectionComponent, TextComponent } from '../component';
 import { authSelector } from '../redux/reducers/authReducer';
 import { globalStyle } from '../styles/globalStyle';
 import { FONTFAMILY } from '../../assets/fonts';
+import { useGetPriority } from '../hook/useGetPriority';
 
 const AddNewWork = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
@@ -16,10 +17,16 @@ const AddNewWork = ({navigation}: any) => {
   const [isName, setIsName] = useState('');
   const [isdescription, isSetDescription] = useState('');
   const user = useSelector(authSelector);
+  const {getPriority}= useGetPriority()
+  const [priority,setPriority]= useState<String>("")
+  
+  const HandlePriority =(priority:String)=>{
+    setPriority(priority)    
+  }
 
   const AddNewWork = async () => {
     try {
-      await workAPI.HandleWork('/add-work', { id_user: user.id, name: isName, description: isdescription, date_work: date }, 'post')
+      await workAPI.HandleWork('/add-work', { id_user: user.id, name: isName, description: isdescription, date_work: date, id_priority: priority }, 'post')
       setIsName('')
       isSetDescription('')
       setDate(new Date())
@@ -56,6 +63,9 @@ const AddNewWork = ({navigation}: any) => {
           onChangeText={isSetDescription}
           placeholderTextColor={COLORS.HEX_LIGHT_GREY}
         />
+      </SectionComponent>
+      <SectionComponent>
+        <CategoriesList dataCategories={getPriority} onDataCategories={HandlePriority}/>
       </SectionComponent>
       <SectionComponent>
         <RowComponent justify='space-between'>

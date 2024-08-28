@@ -3,7 +3,7 @@ import { AddSquare, CopySuccess, Flag, Home2, Profile } from 'iconsax-react-nati
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 import COLORS from '../assets/colors/Colors';
-import { AddNewWork, CalendarScreen, HomeScreen, ProFileScreen, SuccessWork } from '../screens';
+import { AddNewWork, HomeScreen, PriorityScreen, ProFileScreen, SuccessWork } from '../screens';
 import { globalStyle } from '../styles/globalStyle';
 
 
@@ -32,7 +32,7 @@ const TabNavigator = () => {
                     case 'Home':
                         icon = <Home2 size={size} color={color} variant="Bold" />;
                         break;
-                    case 'Calendar':
+                    case 'Priority':
                         icon = <Flag size={size} color={color} variant="Bold" />;
                         break;
                     case 'SuccessWork':
@@ -79,7 +79,7 @@ const TabNavigator = () => {
             tabBarLabel: () => null, 
         })}>
             <Tab.Screen name='Home' component={HomeScreen} />
-            <Tab.Screen name='Calendar' component={CalendarScreen} />
+            <Tab.Screen name='Priority' component={PriorityScreen} />
             <Tab.Screen name='AddWork' component={AddNewWork} />
             <Tab.Screen name='SuccessWork' component={SuccessWork} />
             <Tab.Screen name='Profile' component={ProFileScreen} />

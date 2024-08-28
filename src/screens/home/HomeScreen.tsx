@@ -25,8 +25,8 @@ const HomeScreen = ({navigation, route} : any) => {
     };
     getWorkByUserId()
   },[work]);
-  
- 
+
+
   const WorkDetailHandle = (item : any) => {
     navigation.navigate('DetailWorkScreen', {data:item})
   }
@@ -35,9 +35,9 @@ const HomeScreen = ({navigation, route} : any) => {
     <View style={{flex:1, backgroundColor: COLORS.BLACK}}>
       <StatusBar barStyle={'light-content'}/>
       <View style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              borderBottomEndRadius: 16,
-              borderBottomStartRadius: 16}}>
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        borderBottomEndRadius: 16,
+        borderBottomStartRadius: 16}}>
         <SectionComponent styles={{ marginTop: 40 }}>
           <RowComponent justify='space-between'>
             <RowComponent>

@@ -1,4 +1,4 @@
-import { Clock } from 'iconsax-react-native';
+import { Clock, Flag } from 'iconsax-react-native';
 import React, { useEffect, useState } from 'react';
 import { Switch, TouchableOpacity } from 'react-native';
 import COLORS from '../assets/colors/Colors';
@@ -16,11 +16,12 @@ interface Props {
     description?: string,
     onPress?: () => void,
     isSuccess?: boolean,
-    idWork: ObjectId
+    idWork: ObjectId,
+    id_priority?: any
 }
 
 const CardListWorkComponent = (props: Props) => {
-    const { name, time, date, description, onPress, isSuccess, idWork } = props
+    const { name, time, date, description, onPress, isSuccess, idWork, id_priority } = props
     const [isRemember, setIsRemember] = useState(isSuccess);
 
     useEffect(() => {
@@ -41,20 +42,25 @@ const CardListWorkComponent = (props: Props) => {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 colors={[COLORS.primaryGreyHex, COLORS.HEX_BLACK]}
-                style={{padding:10, borderRadius:25, marginBottom: 10}}>
+                style={{ padding: 10, borderRadius: 25, marginBottom: 10 }}>
                 <SectionComponent>
-                    <RowComponent justify='flex-end' onPress={() => setIsRemember(!isRemember)}>
-                        <Switch
-                            trackColor={{ false: COLORS.WHITE, true: COLORS.ORANGE }}
-                            thumbColor={isRemember ? COLORS.WHITE : COLORS.HEX_LIGHT_GRAY}
-                            value={isRemember}
-                            onChange={() => setIsRemember(!isRemember)}
-                        />
-                        <TextComponent
-                            text={isRemember ? 'Đã hoàn thành' : 'Chưa hoàn thành'}
-                            styles={{ fontSize: 13, marginLeft: 10 }}
-                            color={isRemember ? COLORS.ORANGE : COLORS.WHITE}
-                        />
+                    <RowComponent justify='space-between'>
+                        <Flag size={20} variant='Bold' color={id_priority?.color} />
+                        <RowComponent
+                            justify="flex-end"
+                            onPress={() => setIsRemember(!isRemember)}>
+                            <Switch
+                                trackColor={{ false: COLORS.WHITE, true: COLORS.ORANGE }}
+                                thumbColor={isRemember ? COLORS.WHITE : COLORS.HEX_LIGHT_GRAY}
+                                value={isRemember}
+                                onChange={() => setIsRemember(!isRemember)}
+                            />
+                            <TextComponent
+                                text={isRemember ? 'Đã hoàn thành' : 'Chưa hoàn thành'}
+                                styles={{ fontSize: 13, marginLeft: 10 }}
+                                color={isRemember ? COLORS.ORANGE : COLORS.WHITE}
+                            />
+                        </RowComponent>
                     </RowComponent>
                     <TextComponent text={name} size={16} styles={{ fontWeight: 'bold', marginBottom: 5 }} />
                     <TextComponent text={description} size={12} numberOfLines={2} />

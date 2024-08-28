@@ -4,13 +4,20 @@ import { TextInput, TouchableOpacity, View } from 'react-native';
 import { FONTFAMILY } from '../../../../../assets/fonts';
 import workAPI from '../../../../apis/workAPI';
 import COLORS from '../../../../assets/colors/Colors';
-import { ButtonComponent, ContainerComponent, RowComponent, SectionComponent, SpaceComponent, TextComponent } from '../../../../component';
+import { ButtonComponent, CategoriesList, ContainerComponent, RowComponent, SectionComponent, SpaceComponent, TextComponent } from '../../../../component';
+import { useGetPriority } from '../../../../hook/useGetPriority';
 
 const UpdateWorkScreen = ({ navigation, route }: any) => {
 
     const { data } = route.params;
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const { getPriority } = useGetPriority()
+    const [priority, setPriority] = useState<String>(data.id_priority._id.toString())
+
+    const HandlePriority = (priority: String) => {
+        setPriority(priority)
+    }
 
     useEffect(() => {
         if (data) {
@@ -21,7 +28,7 @@ const UpdateWorkScreen = ({ navigation, route }: any) => {
 
     const updateWorkHandle = async () => {
         try {
-            const response: any = await workAPI.HandleWork(`/update-work/${data._id}`, { name, description }, 'put');
+            const response: any = await workAPI.HandleWork(`/update-work/${data._id}`, { name, description, id_priority:priority }, 'put');
             const updatedWork = response.work;
             setName('');
             setDescription('');
@@ -67,9 +74,14 @@ const UpdateWorkScreen = ({ navigation, route }: any) => {
                     multiline
                 />
             </SectionComponent>
-
             <SpaceComponent height={30} />
-
+            <SectionComponent>
+                <CategoriesList
+                    dataCategories={getPriority}
+                    onDataCategories={HandlePriority}
+                    id_priority={data.id_priority._id.toString()}
+                />
+            </SectionComponent>
             <SectionComponent>
                 <ButtonComponent
                     type='orange'
