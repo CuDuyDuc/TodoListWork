@@ -24,8 +24,7 @@ const HomeScreen = ({navigation, route} : any) => {
       }
     };
     getWorkByUserId()
-  },[]);
-  console.log(work);
+  },[work]);
   
  
   const WorkDetailHandle = (item : any) => {

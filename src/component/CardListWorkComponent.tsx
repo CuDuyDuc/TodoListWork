@@ -22,11 +22,11 @@ interface Props {
 const CardListWorkComponent = (props: Props) => {
     const { name, time, date, description, onPress, isSuccess, idWork } = props
     const [isRemember, setIsRemember] = useState(isSuccess);
-    
+
     useEffect(() => {
         const updateSuccess = async () => {
             try {
-                await workAPI.HandleWork(`/update-success/${idWork}`, { success: isRemember }, 'put')            
+                await workAPI.HandleWork(`/update-success/${idWork}`, { success: isRemember }, 'put')
             } catch (error) {
                 console.log('Lỗi update success', error);
 
@@ -34,7 +34,7 @@ const CardListWorkComponent = (props: Props) => {
         }
         updateSuccess()
     }, [isRemember])
-    
+
     return (
         <TouchableOpacity onPress={onPress}>
             <LinearGradient
@@ -53,19 +53,15 @@ const CardListWorkComponent = (props: Props) => {
                         <TextComponent
                             text={isRemember ? 'Đã hoàn thành' : 'Chưa hoàn thành'}
                             styles={{ fontSize: 13, marginLeft: 10 }}
-                            color = {isRemember ? COLORS.ORANGE : COLORS.WHITE }
+                            color={isRemember ? COLORS.ORANGE : COLORS.WHITE}
                         />
                     </RowComponent>
-                    <RowComponent justify="space-between" styles={{ alignItems: 'center' }}>
-                        <RowComponent justify='space-between'>
-                            <TextComponent text={name} size={16} styles={{ fontWeight: 'bold' }} />
-                        </RowComponent>
-                    </RowComponent>
+                    <TextComponent text={name} size={16} styles={{ fontWeight: 'bold', marginBottom: 5 }} />
                     <TextComponent text={description} size={12} numberOfLines={2} />
                     <RowComponent justify="space-between" styles={{ alignItems: 'center' }}>
-                        <RowComponent justify="flex-start" styles={{ alignItems: 'center'}}>
+                        <RowComponent justify="flex-start" styles={{ alignItems: 'center' }}>
                             <Clock size={22} color={COLORS.ORANGE} variant='Bold' />
-                            <TextComponent text={time} size={14} styles={{marginTop: 4, marginStart: 3}} />
+                            <TextComponent text={time} size={14} styles={{ marginTop: 4, marginStart: 3 }} />
                         </RowComponent>
                         <TextComponent text={date} size={14} styles={{ marginTop: 5 }} />
                     </RowComponent>
