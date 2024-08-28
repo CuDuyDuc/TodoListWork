@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import priorityAPI from "../apis/PriorityAPI"
+import priorityAPI from "../apis/priorityAPI"
 
 
 export const useGetPriority=()=>{
