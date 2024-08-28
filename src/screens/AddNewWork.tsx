@@ -73,9 +73,6 @@ const AddNewWork = ({navigation}: any) => {
             <TouchableOpacity onPress={() => setOpen(true)}>
               <Calendar size={35} variant='Bold' color={COLORS.ORANGE} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}}>
-              <Flag size={35} variant='Bold' color={COLORS.ORANGE} />
-            </TouchableOpacity>
           </RowComponent>
           <TouchableOpacity onPress={AddNewWork}>
             <Send size={35} variant='Bold' color={COLORS.ORANGE} />
